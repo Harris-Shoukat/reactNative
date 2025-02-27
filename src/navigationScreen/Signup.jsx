@@ -1,7 +1,7 @@
 import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import loginconstant from '../constants/loginconstant';
-const Signup = props => {
+const Signup = (props) => {
   // const {email} = props.route.params;
 
   return (
@@ -11,8 +11,8 @@ const Signup = props => {
       </Text> */}
 
       <FlatList
-        data={loginconstant} // List Data
-        keyExtractor={item => item.id.toString()} // Convert id to string
+        data={loginconstant} 
+        keyExtractor={item => item.id.toString()} 
         renderItem={({item}) => (
           <View style={styles.card}>
             <Text>ID: {item.id}</Text>

@@ -1,5 +1,5 @@
 import {
-  Alert,
+  KeyboardAvoidingView,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -7,24 +7,35 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import loginconstant from '../constants/loginconstant';
 import React, {useState} from 'react';
 
 const Login = ({navigation}) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleform = () => {
-    // Alert.alert('Login detail', `Email: ${email} \nPassword: ${password}`);
+    const user = loginconstant.find(
+      val => val.email === email && val.password === password,
+    );
 
-    navigation.navigate('signup', {
-      email: email,
-    });
+    // console.log(user);
+
+    if (user) {
+      navigation.navigate('Home', {
+        email: email,
+      });
+    } else {
+      alert('Invalid Email or Password');
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textview}>
         <Text style={styles.text}>Login</Text>
+        {/* <KeyboardAvoidingView> */}
+
         <TextInput
           placeholder="email"
           value={email}
@@ -40,6 +51,8 @@ const Login = ({navigation}) => {
           placeholder="password"
           style={styles.field}
         />
+        {/* </KeyboardAvoidingView> */}
+
         <TouchableOpacity
           onPress={handleform}
           activeOpacity={0.5}
