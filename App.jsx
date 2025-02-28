@@ -11,9 +11,45 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Signup from './src/navigationScreen/Signup';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Home from './src/navigationScreen/Home';
-import About from './src/navigationScreen/About';
+// import About from './src/navigationScreen/About';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
+import Splash from './src/navigationScreen/Splash';
 
+const About = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarInactiveTintColor: 'black',
+        tabBarStyle: {backgroundColor: 'lightgrey'},
+        tabBarLabelStyle: {fontSize: 14, fontWeight: 'bold'},
+        tabBarActiveTintColor: '#2471a3',
+      }}>
+      {/* <Tab.Screen name="Home" component={Home} /> */}
+      <Tab.Screen
+        name="Sign up"
+        component={Signup}
+        options={{
+          tabBarIcon: ({size, color}) => (
+            <Icon name="user-plus" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Login"
+        component={Login}
+        options={{
+          tabBarIcon: ({size, color}) => (
+            <Icon name="sign-in-alt" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+const Tab = createBottomTabNavigator();
 
 // const stack = createNativeStackNavigator();
 
@@ -38,6 +74,7 @@ const App = () => {
 
       <NavigationContainer>
         <drawer.Navigator
+          initialRouteName="Splash"
           screenOptions={{
             drawerStyle: {
               backgroundColor: 'lightgrey',
@@ -52,21 +89,39 @@ const App = () => {
             headerTintColor: '#FEFCFF',
           }}>
           <drawer.Screen
+            name="Splash"
+            component={Splash}
+            options={{headerShown: false}}
+        
+          />
+          <drawer.Screen
             name="Login"
             component={Login}
             options={{headerShown: false}}
           />
-          <drawer.Screen name="Home" component={Home} options={{
-            drawerIcon: ({size,color}) => <Icon name="home" size={size} color={color} />
-          }}/>
-          <drawer.Screen name="About" component={About} options={{
-            drawerIcon: ({size,color})=> <Icon name='address-card' size={size} color={color}/>
-          }}/>
+          <drawer.Screen
+            name="Home"
+            component={Home}
+            options={{
+              drawerIcon: ({size, color}) => (
+                <Icon name="home" size={size} color={color} />
+              ),
+            }}
+          />
+          <drawer.Screen
+            name="About"
+            component={About}
+            options={{
+              drawerIcon: ({size, color}) => (
+                <Icon name="address-card" size={size} color={color} />
+              ),
+            }}
+          />
           <drawer.Screen name="signup" component={Signup} />
         </drawer.Navigator>
       </NavigationContainer>
     </>
-  ); 
+  );
 };
 
 export default App;
