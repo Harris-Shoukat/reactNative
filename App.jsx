@@ -15,6 +15,9 @@ import Home from './src/navigationScreen/Home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import Splash from './src/navigationScreen/Splash';
+import Getapi from './src/navigationScreen/Getapi';
+import Postapi from './src/navigationScreen/Postapi';
+import DeleteApi from './src/navigationScreen/DeleteApi';
 
 const About = () => {
   return (
@@ -37,8 +40,8 @@ const About = () => {
         }}
       />
       <Tab.Screen
-        name="Login"
-        component={Login}
+        name="API"
+        component={DeleteApi}
         options={{
           tabBarIcon: ({size, color}) => (
             <Icon name="sign-in-alt" size={size} color={color} />
